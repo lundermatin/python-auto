@@ -21,3 +21,17 @@ To automate table processing with Python, you will typically need to:
 4.Write the processed data back to a table format, such as a CSV or Excel file, or display the results in a formatted table.
 
 Here's an example of how you might use Pandas to read in a CSV file containing a table of data, clean and transform the data, and write the processed data back to a new CSV file:
+# import pandas
+import pandas as pd
+# Read in the table data from a CSV file
+table_data = pd.read_csv('my_table_data.csv')
+# Clean and transform the data as needed
+table_data = table_data.dropna() # remove rows with missing values
+# remove dollar sign from price column
+table_data['price'] = table_data['price'].str.replace('$', '') 
+# convert price column to float data type
+table_data['price'] = table_data['price'].astype(float) 
+# Perform calculations or statistical analyses on the data
+mean_price = table_data['price'].mean()
+# Write the processed data back to a new CSV file
+table_data.to_csv('my_processed_table_data.csv', index=False)
